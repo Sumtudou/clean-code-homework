@@ -20,35 +20,35 @@ public class OrderReceipt {
         this.order = order;
     }
 
-    public String printReceipt() {
-        StringBuilder output = new StringBuilder();
+    public String generateReceipt() {
+        StringBuilder receiptContent = new StringBuilder();
 
-        output.append(RECEIPT_HEADER);
+        receiptContent.append(RECEIPT_HEADER);
 
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+        receiptContent.append(order.getCustomerName());
+        receiptContent.append(order.getCustomerAddress());
 
         double totSalesTx = 0d;
-        double tot = 0d;
+        double totalPrice = 0d;
         for (LineItem lineItem : order.getLineItems()) {
-            output.append(lineItem.getDescription());
-            output.append(CHAR_TAB);
-            output.append(lineItem.getPrice());
-            output.append(CHAR_TAB);
-            output.append(lineItem.getQuantity());
-            output.append(CHAR_TAB);
-            output.append(lineItem.totalAmount());
-            output.append(CHAR_NEW_LINE);
+            receiptContent.append(lineItem.getDescription());
+            receiptContent.append(CHAR_TAB);
+            receiptContent.append(lineItem.getPrice());
+            receiptContent.append(CHAR_TAB);
+            receiptContent.append(lineItem.getQuantity());
+            receiptContent.append(CHAR_TAB);
+            receiptContent.append(lineItem.getAmount());
+            receiptContent.append(CHAR_NEW_LINE);
 
-            double salesTax = lineItem.totalAmount() * TAX_RATE_10;
+            double salesTax = lineItem.getAmount() * TAX_RATE_10;
             totSalesTx += salesTax;
 
-            tot += lineItem.totalAmount() + salesTax;
+            totalPrice += lineItem.getAmount() + salesTax;
         }
 
-        output.append(STRING_SALES_TAX).append(CHAR_TAB).append(totSalesTx);
+        receiptContent.append(STRING_SALES_TAX).append(CHAR_TAB).append(totSalesTx);
 
-        output.append(STRING_TOTAL_AMOUNT).append(CHAR_TAB).append(tot);
-        return output.toString();
+        receiptContent.append(STRING_TOTAL_AMOUNT).append(CHAR_TAB).append(totalPrice);
+        return receiptContent.toString();
     }
 }

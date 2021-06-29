@@ -10,8 +10,5 @@
 | 8    | OrderReceipt.java                | magical number    | extract constant                                            |
 | 9    | OrderReceipt.java, order.java    | feature envy      | extract getOrderReceiptContent() getTotalSalesTx() to order |
 | 10   | OrderReceipt.java, order.java    | feature envy      | extract totalPrice to order                                 |
-|      |                                  |                   |                                                             |
-|      |                                  |                   |                                                             |
-|      |                                  |                   |                                                             |
-|      |                                  |                   |                                                             |
+| 11   | OrderReceipt.java                | long method       | extract 2 method from generateReceipt                       |
 

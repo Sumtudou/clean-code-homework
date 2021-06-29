@@ -5,7 +5,7 @@
 | 3    | OrderReceipt.java                | deprecated method | remove deprecated method             |
 | 4    | OrderReceipt.java                | magical number    | extract magical number               |
 | 5    | OrderReceipt.java, LineItem.java | rename            | rename some variable                 |
-|      |                                  |                   |                                      |
+| 6    | OrderReceipt.java                | long method       | extract some methods                 |
 |      |                                  |                   |                                      |
 |      |                                  |                   |                                      |
 |      |                                  |                   |                                      |

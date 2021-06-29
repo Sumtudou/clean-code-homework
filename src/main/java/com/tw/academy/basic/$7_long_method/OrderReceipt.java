@@ -8,6 +8,12 @@ package com.tw.academy.basic.$7_long_method;
  * @since   2018-1-1
  */
 public class OrderReceipt {
+    public static final String RECEIPT_HEADER = "======Printing Orders======\n";
+    public static final char CHAR_TAB = '\t';
+    public static final char CHAR_NEW_LINE = '\n';
+    public static final String STRING_SALES_TAX = "Sales Tax";
+    public static final String STRING_TOTAL_AMOUNT = "Total Amount";
+    public static final double TAX_RATE_10 = .10;
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -17,7 +23,7 @@ public class OrderReceipt {
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
 
-        output.append("======Printing Orders======\n");
+        output.append(RECEIPT_HEADER);
 
         output.append(order.getCustomerName());
         output.append(order.getCustomerAddress());
@@ -26,23 +32,23 @@ public class OrderReceipt {
         double tot = 0d;
         for (LineItem lineItem : order.getLineItems()) {
             output.append(lineItem.getDescription());
-            output.append('\t');
+            output.append(CHAR_TAB);
             output.append(lineItem.getPrice());
-            output.append('\t');
+            output.append(CHAR_TAB);
             output.append(lineItem.getQuantity());
-            output.append('\t');
+            output.append(CHAR_TAB);
             output.append(lineItem.totalAmount());
-            output.append('\n');
+            output.append(CHAR_NEW_LINE);
 
-            double salesTax = lineItem.totalAmount() * .10;
+            double salesTax = lineItem.totalAmount() * TAX_RATE_10;
             totSalesTx += salesTax;
 
             tot += lineItem.totalAmount() + salesTax;
         }
 
-        output.append("Sales Tax").append('\t').append(totSalesTx);
+        output.append(STRING_SALES_TAX).append(CHAR_TAB).append(totSalesTx);
 
-        output.append("Total Amount").append('\t').append(tot);
+        output.append(STRING_TOTAL_AMOUNT).append(CHAR_TAB).append(tot);
         return output.toString();
     }
 }

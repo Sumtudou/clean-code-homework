@@ -24,4 +24,22 @@ public class Order {
     public List<LineItem> getLineItems() {
         return lineItems;
     }
+
+    public StringBuilder getOrderReceiptContent() {
+        StringBuilder orderReceiptContent = new StringBuilder();
+        if (lineItems == null) {
+            return orderReceiptContent;
+        }
+        lineItems.forEach(lineItem -> {
+            orderReceiptContent.append(lineItem.getLineItemString());
+        });
+        return orderReceiptContent;
+    }
+
+    public double getTotalSalesTx() {
+        if (lineItems == null) {
+            return 0.0;
+        }
+        return lineItems.stream().mapToDouble(lineItem -> lineItem.getSalesTax()).sum();
+    }
 }

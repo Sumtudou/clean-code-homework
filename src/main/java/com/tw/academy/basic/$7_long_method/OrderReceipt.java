@@ -22,12 +22,11 @@ public class OrderReceipt extends constant {
         receiptContent.append(order.getCustomerName());
         receiptContent.append(order.getCustomerAddress());
 
-        double totSalesTx = 0d;
         double totalPrice = 0d;
+        receiptContent.append(order.getOrderReceiptContent());
+        double totSalesTx = order.getTotalSalesTx();
         for (LineItem lineItem : order.getLineItems()) {
-            receiptContent.append(lineItem.getLineItemString());
             double salesTax = lineItem.getSalesTax();
-            totSalesTx += salesTax;
             totalPrice += lineItem.getAmount() + salesTax;
         }
 

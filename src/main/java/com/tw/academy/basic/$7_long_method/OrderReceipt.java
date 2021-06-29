@@ -24,31 +24,35 @@ public class OrderReceipt {
         StringBuilder receiptContent = new StringBuilder();
 
         receiptContent.append(RECEIPT_HEADER);
-
         receiptContent.append(order.getCustomerName());
         receiptContent.append(order.getCustomerAddress());
 
         double totSalesTx = 0d;
         double totalPrice = 0d;
         for (LineItem lineItem : order.getLineItems()) {
-            receiptContent.append(lineItem.getDescription());
-            receiptContent.append(CHAR_TAB);
-            receiptContent.append(lineItem.getPrice());
-            receiptContent.append(CHAR_TAB);
-            receiptContent.append(lineItem.getQuantity());
-            receiptContent.append(CHAR_TAB);
-            receiptContent.append(lineItem.getAmount());
-            receiptContent.append(CHAR_NEW_LINE);
-
-            double salesTax = lineItem.getAmount() * TAX_RATE_10;
+            getLineItemString(receiptContent, lineItem);
+            double salesTax = getSalesTax(lineItem);
             totSalesTx += salesTax;
-
             totalPrice += lineItem.getAmount() + salesTax;
         }
 
         receiptContent.append(STRING_SALES_TAX).append(CHAR_TAB).append(totSalesTx);
-
         receiptContent.append(STRING_TOTAL_AMOUNT).append(CHAR_TAB).append(totalPrice);
         return receiptContent.toString();
+    }
+
+    private double getSalesTax(LineItem lineItem) {
+        return lineItem.getAmount() * TAX_RATE_10;
+    }
+
+    private void getLineItemString(StringBuilder receiptContent, LineItem lineItem) {
+        receiptContent.append(lineItem.getDescription());
+        receiptContent.append(CHAR_TAB);
+        receiptContent.append(lineItem.getPrice());
+        receiptContent.append(CHAR_TAB);
+        receiptContent.append(lineItem.getQuantity());
+        receiptContent.append(CHAR_TAB);
+        receiptContent.append(lineItem.getAmount());
+        receiptContent.append(CHAR_NEW_LINE);
     }
 }

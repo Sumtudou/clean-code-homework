@@ -9,4 +9,9 @@
 | 7    | OrderReceipt.java, LineItem.java | feature envy      | extract method from OrderReceipt to LineItem                |
 | 8    | OrderReceipt.java                | magical number    | extract constant                                            |
 | 9    | OrderReceipt.java, order.java    | feature envy      | extract getOrderReceiptContent() getTotalSalesTx() to order |
+| 10   | OrderReceipt.java, order.java    | feature envy      | extract totalPrice to order                                 |
+|      |                                  |                   |                                                             |
+|      |                                  |                   |                                                             |
+|      |                                  |                   |                                                             |
+|      |                                  |                   |                                                             |
 

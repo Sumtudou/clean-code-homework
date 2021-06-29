@@ -40,6 +40,13 @@ public class Order {
         if (lineItems == null) {
             return 0.0;
         }
-        return lineItems.stream().mapToDouble(lineItem -> lineItem.getSalesTax()).sum();
+        return lineItems.stream().mapToDouble(LineItem::getSalesTax).sum();
+    }
+
+    public double getTotalPrice() {
+        if (lineItems == null) {
+            return 0.0;
+        }
+        return lineItems.stream().mapToDouble(lineItem -> lineItem.getAmount() + lineItem.getSalesTax()).sum();
     }
 }

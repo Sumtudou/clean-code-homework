@@ -30,8 +30,8 @@ public class OrderReceipt {
         double totSalesTx = 0d;
         double totalPrice = 0d;
         for (LineItem lineItem : order.getLineItems()) {
-            getLineItemString(receiptContent, lineItem);
-            double salesTax = getSalesTax(lineItem);
+            receiptContent.append(lineItem.getLineItemString());
+            double salesTax = lineItem.getSalesTax();
             totSalesTx += salesTax;
             totalPrice += lineItem.getAmount() + salesTax;
         }
@@ -41,18 +41,7 @@ public class OrderReceipt {
         return receiptContent.toString();
     }
 
-    private double getSalesTax(LineItem lineItem) {
-        return lineItem.getAmount() * TAX_RATE_10;
-    }
 
-    private void getLineItemString(StringBuilder receiptContent, LineItem lineItem) {
-        receiptContent.append(lineItem.getDescription());
-        receiptContent.append(CHAR_TAB);
-        receiptContent.append(lineItem.getPrice());
-        receiptContent.append(CHAR_TAB);
-        receiptContent.append(lineItem.getQuantity());
-        receiptContent.append(CHAR_TAB);
-        receiptContent.append(lineItem.getAmount());
-        receiptContent.append(CHAR_NEW_LINE);
-    }
+
+
 }

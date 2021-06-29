@@ -1,9 +1,8 @@
 package com.tw.academy.basic.$7_long_method;
 
+import static com.tw.academy.basic.$7_long_method.constant.*;
+
 public class LineItem {
-	public static final char CHAR_TAB = '\t';
-	public static final char CHAR_NEW_LINE = '\n';
-	public static final double TAX_RATE_10 = .10;
 
 	private String description;
 	private double price;

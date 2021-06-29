@@ -7,13 +7,8 @@ package com.tw.academy.basic.$7_long_method;
  * @version 1.0
  * @since   2018-1-1
  */
-public class OrderReceipt {
-    public static final String RECEIPT_HEADER = "======Printing Orders======\n";
-    public static final char CHAR_TAB = '\t';
-    public static final char CHAR_NEW_LINE = '\n';
-    public static final String STRING_SALES_TAX = "Sales Tax";
-    public static final String STRING_TOTAL_AMOUNT = "Total Amount";
-    public static final double TAX_RATE_10 = .10;
+public class OrderReceipt extends constant {
+
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -40,8 +35,4 @@ public class OrderReceipt {
         receiptContent.append(STRING_TOTAL_AMOUNT).append(CHAR_TAB).append(totalPrice);
         return receiptContent.toString();
     }
-
-
-
-
 }
